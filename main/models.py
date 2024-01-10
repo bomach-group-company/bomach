@@ -12,7 +12,7 @@ from .utils import (
 
 # Create your models here.
 
-STAFF_EMAILS = ['benantoto@gmail.com', 'contact@bomachgroup.com', 'bomachgroupmanagement@gmail.com']
+STAFF_EMAILS = ['benantoto@gmail.com', 'admin@yuhga.org', 'bomachgroupmanagement@gmail.com']
 
 class ImageUrl:
     def image_url(self):
@@ -20,7 +20,7 @@ class ImageUrl:
             return self.image.url
 
         # this has the potential to fail when i use cloudinary to host static files
-        return '/static/assets/img/logo/bomach-logo-hd.jpeg'
+        return '/static/assets/img/logo/yuhga.png'
 
 
 class CustomBaseModel:
@@ -104,7 +104,7 @@ class Property(CustomBaseModel, models.Model, ImageUrl):
 
     name = models.CharField(max_length=250, default='Bomach admin')
     phone = models.CharField(max_length=250, default='080 3665 6173')
-    email = models.EmailField(max_length=250, default='contact@bomachgroup.com')
+    email = models.EmailField(max_length=250, default='admin@yuhga.org')
     slug = models.CharField(max_length=250, unique=True, blank=True)
     property_title = models.CharField(max_length=250, default='Title')
     sub_property_category = models.ForeignKey(SubPropertyCategory, on_delete=models.CASCADE, null=True, blank=True)
@@ -121,7 +121,7 @@ class Property(CustomBaseModel, models.Model, ImageUrl):
         image = self.images.all().order_by('-priority').first()
         if image:
             return image.image_url()
-        return '/static/assets/img/logo/bomach-logo-full.jpeg'
+        return '/static/assets/img/logo/yuhga.png'
 
     def create_slug(self):
         slug_val = ''
@@ -258,7 +258,7 @@ class Product(CustomBaseModel, models.Model):
         product_image = self.product_images.order_by('-priority').first()
         if product_image:
             return product_image.image_url()
-        return '/static/assets/img/logo/bomach-logo-full.jpeg'
+        return '/static/assets/img/logo/yuhga.png'
 
     def __str__(self):
         return self.id
