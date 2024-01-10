@@ -16,8 +16,8 @@ from pathlib import Path
 from decouple import config
 
 
-TRY_LOCAL_DB = bool(int(config('TRY_LOCAL_DB', 0)))
-TRY_MYSQL = bool(int(config('TRY_MYSQL', 1)))
+TRY_LOCAL_DB = True
+TRY_MYSQL = False
 
 if not TRY_LOCAL_DB and TRY_MYSQL:
     import pymysql
@@ -33,20 +33,19 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = '^=k8^m1m@gdhgg&+a@g6up*tfi^67g^e%8uv0yhhj!sqzc()$=dw03gb'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = bool(int(config('DEBUG', 0)))
+DEBUG = True
 
 # use local db, storage, email config create be me
-TRY_LOCAL_STORAGE = bool(int(config('TRY_LOCAL_STORAGE', 0)))
-TRY_LOCAL_EMAIL = bool(int(config('TRY_LOCAL_EMAIL', 0)))
+TRY_LOCAL_STORAGE = True
+TRY_LOCAL_EMAIL = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'bomachgroup.com', 'www.bomachgroup.com']
+ALLOWED_HOSTS = ['yuhga.org', 'www.yuhga.org', '127.0.0.1', 'localhost']
 
-_ALLOWED_HOST = config('ALLOWED_HOST')
-if _ALLOWED_HOST:
-    ALLOWED_HOSTS.extend(_ALLOWED_HOST.split())
+# SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO','https')
+# SECURE_SSL_REDIRECT = True
 
 # Application definition
 
@@ -67,12 +66,12 @@ if not TRY_LOCAL_STORAGE:
     INSTALLED_APPS.insert(9, 'cloudinary')
  
     DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-    STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
+    # STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
 
     CLOUDINARY_STORAGE = {
-        'CLOUD_NAME': config('CLOUDINARY_STORAGE_CLOUD_NAME'),
-        'API_KEY': config('CLOUDINARY_STORAGE_API_KEY'),
-        'API_SECRET': config('CLOUDINARY_STORAGE_API_SECRET'),
+        'CLOUD_NAME': 'dervdezl1',
+        'API_KEY': '174652233732241',
+        'API_SECRET': 'KRbKr774gQtrYuy2FPKfDnW3qsE',
     }
 
     # CKEDITOR_IMAGE_BACKEND = 'cloudinary_storage.storage.CloudinaryMediaBackend'
@@ -132,12 +131,12 @@ if TRY_LOCAL_DB:
 elif TRY_MYSQL:
         DATABASES = {
         'default': {
-            'ENGINE': config('DATABASES_DEFAULT_ENGINE'),
-            'NAME': config('DATABASES_DEFAULT_NAME'),
-            'HOST': config('DATABASES_DEFAULT_HOST'),
-            'PORT': int(config('DATABASES_DEFAULT_PORT')),
-            'USER': config('DATABASES_DEFAULT_USER'),
-            'PASSWORD': config('DATABASES_DEFAULT_PASSWORD'),
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'bomaoqrt_bomach_db',
+            'HOST': '127.0.0.1',
+            'PORT': 3306,
+            'USER': 'bomaoqrt_emma',
+            'PASSWORD': '#56S6Ehh_f])_',
             'OPTIONS': {
                 'charset': 'utf8mb4',
                 'sql_mode': 'strict_trans_tables',
@@ -148,12 +147,12 @@ elif TRY_MYSQL:
 else:
     DATABASES = {
         'default': {
-            'ENGINE': config('DATABASES_DEFAULT_ENGINE'),
-            'NAME': config('DATABASES_DEFAULT_NAME'),
-            'HOST': config('DATABASES_DEFAULT_HOST'),
-            'PORT': int(config('DATABASES_DEFAULT_PORT')),
-            'USER': config('DATABASES_DEFAULT_USER'),
-            'PASSWORD': config('DATABASES_DEFAULT_PASSWORD'),
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'bomaoqrt_bomach_db',
+            'HOST': '127.0.0.1',
+            'PORT': 3306,
+            'USER': 'bomaoqrt_emma',
+            'PASSWORD': '#56S6Ehh_f])_',
         }
     }
 
@@ -220,11 +219,11 @@ if TRY_LOCAL_EMAIL:
 ###PRODUCTION
 
 else:
-    EMAIL_HOST = config('EMAIL_HOST', 'smtp.gmail.com')
-    EMAIL_HOST_USER = config('EMAIL_HOST_USER')
-    EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
-    EMAIL_PORT = config('EMAIL_PORT', '587')
-    EMAIL_USE_TLS = bool(config('EMAIL_USE_TLS', True))
+    EMAIL_HOST = 'smtp.gmail.com'
+    EMAIL_HOST_USER = 'maxzenorhymegod@gmail.com'
+    EMAIL_HOST_PASSWORD = 'piztddphatcsnbtm'
+    EMAIL_PORT = 587
+    EMAIL_USE_TLS = True
 
 # required cause i used CKEDITOR previously then switched the field to SUMMERNOTE because of bug in debug=False
 CKEDITOR_UPLOAD_PATH = 'uploads/'
