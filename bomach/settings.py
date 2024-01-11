@@ -16,8 +16,8 @@ from pathlib import Path
 from decouple import config
 
 
-TRY_LOCAL_DB = True
-TRY_MYSQL = False
+TRY_LOCAL_DB = False
+TRY_MYSQL = True
 
 if not TRY_LOCAL_DB and TRY_MYSQL:
     import pymysql
@@ -36,11 +36,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '^=k8^m1m@gdhgg&+a@g6up*tfi^67g^e%8uv0yhhj!sqzc()$=dw03gb'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 # use local db, storage, email config create be me
-TRY_LOCAL_STORAGE = True
-TRY_LOCAL_EMAIL = True
+TRY_LOCAL_STORAGE = False
+TRY_LOCAL_EMAIL = False
 
 ALLOWED_HOSTS = ['yuhga.org', 'www.yuhga.org', '127.0.0.1', 'localhost']
 
